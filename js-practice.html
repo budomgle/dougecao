@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JS 基础知识练习</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    .section {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 24px 30px;
+      margin-bottom: 24px;
+    }
+    .section h2 {
+      color: #3498db;
+      border-left: 4px solid #3498db;
+      padding-left: 10px;
+      margin-top: 0;
+    }
+    pre {
+      background: #282c34;
+      color: #abb2bf;
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .keyword  { color: #c678dd; }
+    .string   { color: #98c379; }
+    .number   { color: #d19a66; }
+    .comment  { color: #5c6370; font-style: italic; }
+    .func     { color: #61afef; }
+    .output-box {
+      background: #1e1e2e;
+      color: #a6e3a1;
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      margin-top: 12px;
+    }
+    button {
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    button:hover { background: #217dbb; }
+  </style>
+</head>
+<body>
+
+<h1>📚 JavaScript 基础知识练习</h1>
+
+<!-- ========== 1. 变量的定义 ========== -->
+<div class="section">
+  <h2>1. 变量的定义</h2>
+  <p>JavaScript 提供三种声明变量的关键字：<code>var</code>、<code>let</code>、<code>const</code>。</p>
+  <pre><span class="comment">// var：函数作用域，可重复声明（旧写法）</span>
+<span class="keyword">var</span> studentName = <span class="string">"张三"</span>;
+
+<span class="comment">// let：块级作用域，可重新赋值（推荐）</span>
+<span class="keyword">let</span> age = <span class="number">20</span>;
+age = <span class="number">21</span>;   <span class="comment">// 允许修改</span>
+
+<span class="comment">// const：块级作用域，不可重新赋值（常量）</span>
+<span class="keyword">const</span> PI = <span class="number">3.14159</span>;</pre>
+
+  <button onclick="runVarDemo()">▶ 运行示例</button>
+  <div class="output-box" id="varOutput">点击按钮查看运行结果</div>
+</div>
+
+<!-- ========== 2. 变量类型 ========== -->
+<div class="section">
+  <h2>2. 变量类型</h2>
+  <p>JavaScript 有 7 种基本数据类型（原始类型）及引用类型。</p>
+  <pre><span class="keyword">let</span> str    = <span class="string">"Hello, World!"</span>;   <span class="comment">// String  字符串</span>
+<span class="keyword">let</span> num    = <span class="number">42</span>;                  <span class="comment">// Number  数字</span>
+<span class="keyword">let</span> bool   = <span class="keyword">true</span>;               <span class="comment">// Boolean 布尔</span>
+<span class="keyword">let</span> undef;                        <span class="comment">// Undefined 未定义</span>
+<span class="keyword">let</span> nul    = <span class="keyword">null</span>;               <span class="comment">// Null    空</span>
+<span class="keyword">let</span> sym    = Symbol(<span class="string">"id"</span>);       <span class="comment">// Symbol  唯一标识</span>
+<span class="keyword">let</span> big    = <span class="number">9007199254740991n</span>;  <span class="comment">// BigInt  大整数</span>
+<span class="keyword">let</span> obj    = { name: <span class="string">"李四"</span>, age: <span class="number">18</span> }; <span class="comment">// Object 对象</span>
+<span class="keyword">let</span> arr    = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];          <span class="comment">// Array   数组（特殊对象）</span>
+
+console.<span class="func">log</span>(<span class="keyword">typeof</span> str);   <span class="comment">// "string"</span>
+console.<span class="func">log</span>(<span class="keyword">typeof</span> num);   <span class="comment">// "number"</span>
+console.<span class="func">log</span>(<span class="keyword">typeof</span> bool);  <span class="comment">// "boolean"</span></pre>
+
+  <button onclick="runTypeDemo()">▶ 运行示例</button>
+  <div class="output-box" id="typeOutput">点击按钮查看运行结果</div>
+</div>
+
+<!-- ========== 3. 表达式 ========== -->
+<div class="section">
+  <h2>3. 表达式</h2>
+  <p>表达式是能够产生值的代码片段，包含算术、字符串、比较、逻辑、赋值等运算符。</p>
+  <pre><span class="comment">// 算术表达式</span>
+<span class="keyword">let</span> a = <span class="number">10</span>, b = <span class="number">3</span>;
+console.<span class="func">log</span>(a + b);   <span class="comment">// 13</span>
+console.<span class="func">log</span>(a - b);   <span class="comment">// 7</span>
+console.<span class="func">log</span>(a * b);   <span class="comment">// 30</span>
+console.<span class="func">log</span>(a / b);   <span class="comment">// 3.333...</span>
+console.<span class="func">log</span>(a % b);   <span class="comment">// 1（取余）</span>
+console.<span class="func">log</span>(a ** b);  <span class="comment">// 1000（幂运算）</span>
+
+<span class="comment">// 比较表达式</span>
+console.<span class="func">log</span>(a > b);   <span class="comment">// true</span>
+console.<span class="func">log</span>(a === b);  <span class="comment">// false（严格相等）</span>
+
+<span class="comment">// 逻辑表达式</span>
+console.<span class="func">log</span>(<span class="keyword">true</span> && <span class="keyword">false</span>); <span class="comment">// false</span>
+console.<span class="func">log</span>(<span class="keyword">true</span> || <span class="keyword">false</span>);  <span class="comment">// true</span>
+console.<span class="func">log</span>(!<span class="keyword">true</span>);          <span class="comment">// false</span>
+
+<span class="comment">// 字符串拼接</span>
+<span class="keyword">let</span> greeting = <span class="string">"你好，"</span> + <span class="string">"世界！"</span>;
+<span class="comment">// 模板字面量（推荐）</span>
+<span class="keyword">let</span> name = <span class="string">"同学"</span>;
+<span class="keyword">let</span> msg = <span class="string">`欢迎你，${name}！`</span>;</pre>
+
+  <button onclick="runExprDemo()">▶ 运行示例</button>
+  <div class="output-box" id="exprOutput">点击按钮查看运行结果</div>
+</div>
+
+<!-- ========== 4. 流程控制 ========== -->
+<div class="section">
+  <h2>4. 流程控制</h2>
+  <p>通过条件判断（if/else、switch）和循环（for、while）控制代码执行流程。</p>
+  <pre><span class="comment">// if / else if / else</span>
+<span class="keyword">let</span> score = <span class="number">85</span>;
+<span class="keyword">if</span> (score >= <span class="number">90</span>) {
+  console.<span class="func">log</span>(<span class="string">"优秀"</span>);
+} <span class="keyword">else if</span> (score >= <span class="number">70</span>) {
+  console.<span class="func">log</span>(<span class="string">"良好"</span>);   <span class="comment">// ← 输出这里</span>
+} <span class="keyword">else</span> {
+  console.<span class="func">log</span>(<span class="string">"继续努力"</span>);
+}
+
+<span class="comment">// switch</span>
+<span class="keyword">let</span> day = <span class="number">1</span>;
+<span class="keyword">switch</span> (day) {
+  <span class="keyword">case</span> <span class="number">1</span>: console.<span class="func">log</span>(<span class="string">"星期一"</span>); <span class="keyword">break</span>;
+  <span class="keyword">case</span> <span class="number">6</span>: console.<span class="func">log</span>(<span class="string">"星期六"</span>); <span class="keyword">break</span>;
+  <span class="keyword">default</span>: console.<span class="func">log</span>(<span class="string">"其他"</span>);
+}
+
+<span class="comment">// for 循环</span>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i <= <span class="number">5</span>; i++) {
+  console.<span class="func">log</span>(<span class="string">`第 ${i} 次循环`</span>);
+}
+
+<span class="comment">// while 循环</span>
+<span class="keyword">let</span> n = <span class="number">3</span>;
+<span class="keyword">while</span> (n > <span class="number">0</span>) {
+  console.<span class="func">log</span>(<span class="string">`倒计时：${n}`</span>);
+  n--;
+}</pre>
+
+  <button onclick="runFlowDemo()">▶ 运行示例</button>
+  <div class="output-box" id="flowOutput">点击按钮查看运行结果</div>
+</div>
+
+<!-- ========== 5. 函数 ========== -->
+<div class="section">
+  <h2>5. 函数</h2>
+  <p>函数是可复用的代码块，JavaScript 支持多种函数写法。</p>
+  <pre><span class="comment">// 函数声明（有提升）</span>
+<span class="keyword">function</span> <span class="func">add</span>(x, y) {
+  <span class="keyword">return</span> x + y;
+}
+console.<span class="func">log</span>(<span class="func">add</span>(<span class="number">3</span>, <span class="number">5</span>));   <span class="comment">// 8</span>
+
+<span class="comment">// 函数表达式</span>
+<span class="keyword">const</span> <span class="func">multiply</span> = <span class="keyword">function</span>(x, y) {
+  <span class="keyword">return</span> x * y;
+};
+
+<span class="comment">// 箭头函数（ES6，更简洁）</span>
+<span class="keyword">const</span> <span class="func">square</span> = x => x * x;
+console.<span class="func">log</span>(<span class="func">square</span>(<span class="number">4</span>));   <span class="comment">// 16</span>
+
+<span class="comment">// 带默认参数的函数</span>
+<span class="keyword">function</span> <span class="func">greet</span>(name = <span class="string">"同学"</span>) {
+  <span class="keyword">return</span> <span class="string">`你好，${name}！欢迎学习 JavaScript。`</span>;
+}
+console.<span class="func">log</span>(<span class="func">greet</span>());           <span class="comment">// 你好，同学！</span>
+console.<span class="func">log</span>(<span class="func">greet</span>(<span class="string">"王五"</span>));     <span class="comment">// 你好，王五！</span>
+
+<span class="comment">// 递归函数：计算阶乘</span>
+<span class="keyword">function</span> <span class="func">factorial</span>(n) {
+  <span class="keyword">if</span> (n <= <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;
+  <span class="keyword">return</span> n * <span class="func">factorial</span>(n - <span class="number">1</span>);
+}
+console.<span class="func">log</span>(<span class="func">factorial</span>(<span class="number">5</span>));   <span class="comment">// 120</span></pre>
+
+  <button onclick="runFuncDemo()">▶ 运行示例</button>
+  <div class="output-box" id="funcOutput">点击按钮查看运行结果</div>
+</div>
+
+<script>
+  /* ---- 工具：将 console.log 输出重定向到指定 div ---- */
+  function captureLog(fn) {
+    var logs = [];
+    var orig = console.log;
+    console.log = function() {
+      var args = Array.prototype.slice.call(arguments);
+      logs.push(args.map(function(a) {
+        return (typeof a === 'object') ? JSON.stringify(a) : String(a);
+      }).join(' '));
+    };
+    try { fn(); } catch(e) { logs.push('错误：' + e.message); }
+    console.log = orig;
+    return logs.join('\n');
+  }
+
+  /* ---- 1. 变量的定义 ---- */
+  function runVarDemo() {
+    var result = captureLog(function() {
+      var studentName = "张三";
+      let age = 20;
+      age = 21;
+      const PI = 3.14159;
+
+      console.log("studentName (var) =", studentName);
+      console.log("age (let, 修改后) =", age);
+      console.log("PI (const) =", PI);
+
+      // 演示作用域
+      {
+        let blockVar = "块级变量";
+        console.log("块内访问 blockVar:", blockVar);
+      }
+      // console.log(blockVar); // 这里会报错，因为 blockVar 只在块内有效
+      console.log("块外无法访问 blockVar（已注释，否则报错）");
+    });
+    document.getElementById('varOutput').textContent = result;
+  }
+
+  /* ---- 2. 变量类型 ---- */
+  function runTypeDemo() {
+    var result = captureLog(function() {
+      let str   = "Hello, World!";
+      let num   = 42;
+      let bool  = true;
+      let undef;
+      let nul   = null;
+      let sym   = Symbol("id");
+      let big   = 9007199254740991n;
+      let obj   = { name: "李四", age: 18 };
+      let arr   = [1, 2, 3];
+
+      console.log("typeof str   =", typeof str);
+      console.log("typeof num   =", typeof num);
+      console.log("typeof bool  =", typeof bool);
+      console.log("typeof undef =", typeof undef);
+      console.log("typeof nul   =", typeof nul,   "（历史遗留，实际为 null）");
+      console.log("typeof sym   =", typeof sym);
+      console.log("typeof big   =", typeof big);
+      console.log("typeof obj   =", typeof obj);
+      console.log("typeof arr   =", typeof arr,   "（数组也是 object）");
+      console.log("Array.isArray(arr) =", Array.isArray(arr));
+    });
+    document.getElementById('typeOutput').textContent = result;
+  }
+
+  /* ---- 3. 表达式 ---- */
+  function runExprDemo() {
+    var result = captureLog(function() {
+      let a = 10, b = 3;
+      console.log("算术运算：");
+      console.log("  a + b =", a + b);
+      console.log("  a - b =", a - b);
+      console.log("  a * b =", a * b);
+      console.log("  a / b =", (a / b).toFixed(4));
+      console.log("  a % b =", a % b, "（取余）");
+      console.log("  a ** b =", a ** b, "（幂运算）");
+      console.log("比较运算：");
+      console.log("  a > b  =", a > b);
+      console.log("  a === b =", a === b);
+      console.log("  a !== b =", a !== b);
+      console.log("逻辑运算：");
+      console.log("  true && false =", true && false);
+      console.log("  true || false =", true || false);
+      console.log("  !true         =", !true);
+      console.log("字符串：");
+      let name = "同学";
+      console.log("  模板字面量:", `欢迎你，${name}！当前时间: ${new Date().toLocaleTimeString()}`);
+    });
+    document.getElementById('exprOutput').textContent = result;
+  }
+
+  /* ---- 4. 流程控制 ---- */
+  function runFlowDemo() {
+    var result = captureLog(function() {
+      // if/else
+      let score = 85;
+      console.log("=== if/else ===");
+      if (score >= 90) {
+        console.log("成绩", score, "→ 优秀");
+      } else if (score >= 70) {
+        console.log("成绩", score, "→ 良好");
+      } else {
+        console.log("成绩", score, "→ 继续努力");
+      }
+
+      // switch
+      console.log("=== switch ===");
+      let days = ["日","一","二","三","四","五","六"];
+      let day = new Date().getDay();
+      switch (day) {
+        case 0: case 6: console.log("今天是周" + days[day] + "，休息日！"); break;
+        default: console.log("今天是周" + days[day] + "，上班日！");
+      }
+
+      // for
+      console.log("=== for 循环（1~5 求和）===");
+      let sum = 0;
+      for (let i = 1; i <= 5; i++) sum += i;
+      console.log("1+2+3+4+5 =", sum);
+
+      // while
+      console.log("=== while 倒计时 ===");
+      let n = 3;
+      while (n > 0) {
+        console.log("倒计时：" + n);
+        n--;
+      }
+      console.log("发射！🚀");
+    });
+    document.getElementById('flowOutput').textContent = result;
+  }
+
+  /* ---- 5. 函数 ---- */
+  function runFuncDemo() {
+    var result = captureLog(function() {
+      // 函数声明
+      function add(x, y) { return x + y; }
+      console.log("add(3, 5) =", add(3, 5));
+
+      // 函数表达式
+      const multiply = function(x, y) { return x * y; };
+      console.log("multiply(4, 6) =", multiply(4, 6));
+
+      // 箭头函数
+      const square = x => x * x;
+      console.log("square(4) =", square(4));
+
+      // 默认参数
+      function greet(name = "同学") {
+        return `你好，${name}！欢迎学习 JavaScript。`;
+      }
+      console.log(greet());
+      console.log(greet("王五"));
+
+      // 递归：阶乘
+      function factorial(n) {
+        if (n <= 1) return 1;
+        return n * factorial(n - 1);
+      }
+      console.log("5! =", factorial(5));
+      console.log("10! =", factorial(10));
+    });
+    document.getElementById('funcOutput').textContent = result;
+  }
+</script>
+
+</body>
+</html>
